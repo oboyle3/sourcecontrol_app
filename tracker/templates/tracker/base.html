@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Source Control App{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        nav {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #007acc;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><a href="/">Source Control Tracker</a></h1>
+
+        {% if user.is_authenticated %}
+        <nav>
+            Logged in as <strong>{{ user.username }}</strong> |
+            <a href="{% url 'repository_list' %}">My Repositories</a>
+            <a href="{% url 'create_repository' %}">New Repository</a>
+            <a href="/admin/logout/">Logout</a>
+        </nav>
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

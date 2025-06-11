@@ -1,0 +1,20 @@
+{% extends 'tracker/base.html' %}
+
+{% block title %}Commits for {{ branch.name }}{% endblock %}
+
+{% block content %}
+  <h2>Commits in {{ branch.name }} ({{ branch.repository.name }})</h2>
+
+  <ul>
+    {% for commit in commits %}
+      <li>
+        <strong>{{ commit.message }}</strong><br>
+        by {{ commit.author.username }} on {{ commit.timestamp|date:"Y-m-d H:i" }}
+      </li>
+    {% empty %}
+      <li>No commits yet in this branch.</li>
+    {% endfor %}
+  </ul>
+
+  <p><a href="{% url 'branch_list' branch.repository.id %}">← Back to Branches</a></p>
+{% endblock %}

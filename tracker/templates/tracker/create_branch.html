@@ -1,0 +1,15 @@
+{% extends 'tracker/base.html' %}
+
+{% block title %}Create Branch{% endblock %}
+
+{% block content %}
+  <h2>Create Branch for {{ repository.name }}</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Branch</button>
+  </form>
+
+  <p><a href="{% url 'branch_list' repository.id %}">Back to Branches</a></p>
+{% endblock %}

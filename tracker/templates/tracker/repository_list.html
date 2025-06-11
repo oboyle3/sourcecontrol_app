@@ -1,0 +1,14 @@
+{% block content %}
+  <h2>My Repositories</h2>
+
+  <ul>
+  {% for repo in repositories %}
+    <li>
+      <strong>{{ repo.name }}</strong>: {{ repo.description }}
+      <br>
+      <a href="{% url 'branch_list' repo.id %}">View Branches</a>
+    </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
